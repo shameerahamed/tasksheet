@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+        PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+        "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+    <properties resource="ibatis.properties"/>
+
+    <!-- there are plenty of other optional settings, see the ibatis-sql-maps doc -->
+    <settings
+            enhancementEnabled="true"
+            useStatementNamespaces="true"
+            />
+
+    <transactionManager type="JDBC">
+        <dataSource type="SIMPLE">
+            <property name="JDBC.Driver" value="${driver}"/>
+            <property name="JDBC.ConnectionURL" value="${jdbcURL}"/>
+            <property name="JDBC.Username" value="${username}"/>
+            <property name="JDBC.Password" value="${password}"/>
+        </dataSource>
+    </transactionManager>
+
+    <sqlMap resource="com/task/persistence/TaskSheet.xml"/> 
+    <sqlMap resource="com/task/persistence/User.xml" />   
+</sqlMapConfig>
+

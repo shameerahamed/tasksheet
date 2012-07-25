@@ -6,13 +6,44 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ConnectionHelper {    
-    public static Connection getConnection() throws Exception{        
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
+public class ConnectionHelper extends HttpServlet{
+	
+	/*public Connection getConnection(HttpServletRequest request) {		
+		 static javax.sql.DataSource dataSource;
+		 java.sql.Connection myConnection;
+		 try {
+		  dataSource = getDataSource(request);
+		  myConnection = dataSource.getConnection();
+		  // do what you wish with myConnection
+		 } catch (SQLException sqle) {
+		    getServlet().log("Connection.process", sqle);
+		 } finally {
+		    //enclose this in a finally block to make
+		    //sure the connection is closed
+		    try {
+		       myConnection.close();
+		    } catch (SQLException e) {
+		       getServlet().log("Connection.close", e);
+		    }
+		   }
+
+		return null;
+	}*/
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static Connection getConnection() throws Exception{        
         String driver = "org.apache.derby.jdbc.ClientDriver";
         //String driver = "org.apache.derby.jdbc.EmbeddedDriver";
         //String dbName="C:/Program Files/Java/jdk1.6.0_06/db/frameworks/NetworkServer/bin/TaskSheetDB";
         String dbName="TaskSheetDB";
-        String connectionURL = "jdbc:derby://172.24.30.105:1527/" + dbName + ";create=false";
+        String connectionURL = "jdbc:derby://localhost:1527/" + dbName + ";create=false";
       //  String connectionURL = "jdbc:derby:" + dbName + ";create=false";
         Connection conn = null; 
 	      //   Beginning of JDBC code sections   
@@ -24,7 +55,7 @@ public class ConnectionHelper {
 	          **  Catch an error and suggest a CLASSPATH problem
 	           */
 	          Class.forName(driver); 
-	          System.out.println(driver + " loaded. ");
+	          //System.out.println(driver + " loaded. ");
 	      } catch(java.lang.ClassNotFoundException e)     {
 	          System.err.print("ClassNotFoundException: ");
 	          System.err.println(e.getMessage());
@@ -35,7 +66,7 @@ public class ConnectionHelper {
 	     try {
 	            // Create (if needed) and connect to the database
 	            conn = DriverManager.getConnection(connectionURL);		 
-	            System.out.println("Connected to database " + dbName);	
+	            //System.out.println("Connected to database " + dbName);	
 	          
 	        //   ## DATABASE SHUTDOWN SECTION ## 
 		            /*** In embedded mode, an application should shut down Derby.

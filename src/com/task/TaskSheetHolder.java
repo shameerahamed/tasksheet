@@ -15,10 +15,21 @@ public class TaskSheetHolder implements Serializable{
     private float hourSpent_;
     private String remarks_;
     private boolean isDeleted_;
+    private Integer userId_;
     
-    //Added by Ramanathan
+    //Added for Ibatis integration
     
-    private String mode_;
+    public Integer getUserId() {
+		return userId_;
+	}
+
+	public void setUserId(Integer userId) {
+		userId_ = userId;
+	}
+    
+    //Added by Ramanathan   
+
+	private String mode_;
 
     public String getMode() {
 		return mode_;

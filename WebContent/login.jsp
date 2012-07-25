@@ -6,6 +6,8 @@
 <center>
 <% if(request.getParameter("auth")!=null) { %>
 	<font color="red" size="3">You have entered invalid username/password .<br/> Pls try again.</font>
+<%} else if(request.getParameter("inactive")!=null) {%>
+	<font color="red" size="3">Your Account is inactive. <br/> Pls try again later.</font>
 <%} %>
 <br/></center>
 <table cellpadding="5" cellspacing="5" border="0" align="center" width="300px" style="border:1px solid #109284">

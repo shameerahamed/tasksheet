@@ -1,0 +1,37 @@
+select {
+    border: #109284 1px solid;
+    width:auto;
+    font-size:10px;
+}
+
+input{
+    border: #109284 1px solid;    
+    width:100px;
+}
+
+.btn {
+	background:#5296F7;
+	color:#FFFFFF;
+}
+
+
+.mand {
+    color:red;
+}
+
+table.main{
+      background: #109284;      
+}
+
+.row1{ 
+  color:#FFFFFF;
+}
+
+
+.row2{ 
+  color:#000000;
+}
+
+body {
+	font-size:11px;
+}

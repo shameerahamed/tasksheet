@@ -1,0 +1,28 @@
+new java.util.Date();
+
+java.util.Date d = new java.util.Date();d.getDate()
+
+
+d.
+
+YYYY-MM-DD
+
+java.util.Date d = new java.util.Date();new java.text.SimpleDateFormat(d.toString(),new java.text.DateFormatSymbols())
+
+
+("yyyy/MM/dd"))
+
+
+
+java.util.Date d = new java.util.Date();
+new java.text.SimpleDateFormat("yyyy/MM/dd")
+
+java.text.FieldPosition f = new java.text.FieldPosition(2);java.text.SimpleDateFormat sd = new java.text.SimpleDateFormat("yyyy/MM/dd");
+StringBuffer sb = new StringBuffer();
+String s = new String();
+StringBuffer sb2 = new StringBuffer();
+s = sd.format(new java.util.Date());
+sb = sd.format(new java.util.Date(),sb2,f);
+
+//System.out.println(s);
+System.out.println(sb);  

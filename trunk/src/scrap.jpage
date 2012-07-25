@@ -26,3 +26,11 @@ sb = sd.format(new java.util.Date(),sb2,f);
 
 //System.out.println(s);
 System.out.println(sb);  
+
+
+java.text.FieldPosition f = new java.text.FieldPosition(2);
+java.text.SimpleDateFormat sd = new java.text.SimpleDateFormat("dd-MMM-yy");
+StringBuffer sb = new StringBuffer();		
+StringBuffer sb2 = new StringBuffer();		
+sb = sd.format(new java.util.Date(),sb2,f);
+System.out.print(sb); (No explicit return value)

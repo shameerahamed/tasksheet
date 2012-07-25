@@ -5,6 +5,9 @@
  <%@taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <jsp:include page="header.jsp"></jsp:include>
 <link href="css/styles.css" type="text/css" rel="stylesheet"/>
+<link href="css/styles.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="css/tablestyle.css" type="text/css"/>	
+<script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#fromDate").datepicker({
@@ -12,7 +15,7 @@
 			buttonImage: 'images/calendar.gif',
 			buttonImageOnly: true,
 			changeMonth: true,
-			dateFormat: 'yy-mm-dd'
+			dateFormat: 'dd-M-y'
 		});
 	});
 
@@ -22,32 +25,21 @@
 			buttonImage: 'images/calendar.gif',
 			buttonImageOnly: true,
 			changeMonth: true,
-			dateFormat: 'yy-mm-dd'
-		});
+			dateFormat: 'dd-M-y'
+		});		
+		//$("#main").tablesorter(); 
+	});	
+
+	$(document).ready(function(){
+		$('table.tablesorter tr:odd').css('background-color','#DBFBF8');	
 	});
-	/* $(function() {
-		var dates = $('#fromDate, #toDate').datepicker({
-			showOn: 'button',
-			buttonImage: 'images/calendar.gif',
-			buttonImageOnly: true,
-			dateFormat: 'yy-mm-dd',
-			defaultDate: "+1w",
-			changeMonth: true,
-			numberOfMonths: 1,
-			onSelect: function(selectedDate) {
-				var option = this.id == "fromDate" ? "minDate" : "maxDate";
-				var instance = $(this).data("datepicker");
-				var date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-				dates.not(this).datepicker("option", option, date);
-			}
-		});
-	});*/
 	</script>
 <br>
 <font color="red" size="2"><html:errors/></font>
 <br>
 
-<a href="taskSheetDisplay.do" style="font-size:12px">Add</a>
+<a href="taskSheetDisplay.do" style="font-size:12px">Add</a>&nbsp;&nbsp;
+<a href="searchTaskDisplay.do" style="font-size: 12px">Show All</a>
 <html:form action="searchTaskProcess">
 	<table width="100%">
 		<tr>
@@ -65,4 +57,5 @@
 	</table>
 	<%@include file="search.jsp" %>	
 </html:form>
+<br/><br/>
 <jsp:include page="footer.jsp"></jsp:include>

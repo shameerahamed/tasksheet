@@ -23,6 +23,13 @@ table.main{
       background: #109284;      
 }
 
+
+fieldset {
+	border: 1px solid #109284;
+	color : #000000;
+	width: 79%;
+}
+
 .row1{ 
   color:#FFFFFF;
 }
@@ -34,4 +41,38 @@ table.main{
 
 body {
 	font-size:11px;
+}
+
+a{
+	color : #095148;	
+	
+}
+
+a:hover {	
+	text-decoration: none; 
+}
+
+
+.first,.next,.last,.prev {
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	border: none;
+}
+
+
+.first {
+	background : url('../images/icons/first.png') no-repeat;	
+}
+
+.prev {
+	background : url('../images/icons/prev.png') no-repeat;
+}
+
+.last {
+	background : url('../images/icons/last.png') no-repeat;
+}
+
+.next {
+	background : url('../images/icons/next.png') no-repeat;	
 }

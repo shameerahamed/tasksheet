@@ -1,8 +1,6 @@
 package com.task;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,13 +9,13 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-import com.task.dao.DateUtils;
+import com.task.utils.DateUtils;
 
 public class TaskSheetForm extends ActionForm {
-	private String date_;
+	String date_;
 	String fromDate_;
 	String toDate_;
-	String userId_;
+	Integer userId_;
     ArrayList taskList_;
     ArrayList projectList_;
     ArrayList phaseList_;
@@ -27,8 +25,20 @@ public class TaskSheetForm extends ActionForm {
     int removeindex_;
     int editindex_=0;
     
+    //For Paging
+    private int offset; //numRecordsPerPage == size
+	private int pageNo;	
+	private int maxPage;
+	private String formId;
+	private int maxRecord;
     
-    public String getFromDate() {
+	
+    
+    public int getMaxRecord() {
+		return maxRecord;
+	}
+
+	public String getFromDate() {
 		return fromDate_;
 	}
 
@@ -44,11 +54,11 @@ public class TaskSheetForm extends ActionForm {
 		toDate_ = toDate;
 	}
 
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId_;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		userId_ = userId;
 	}
 
@@ -57,8 +67,7 @@ public class TaskSheetForm extends ActionForm {
     	while(i<=4){
     		timeList_.add(i);
     		i+=0.25;
-    	}
-    	System.out.println(timeList_);
+    	}    	
 	}
     
     public int getEditindex() {
@@ -123,6 +132,7 @@ public class TaskSheetForm extends ActionForm {
 
     public void setTaskList(ArrayList taskList) {
         taskList_ = taskList;
+        maxRecord = taskList_.size();
     }
 
     public int getRemoveindex() {
@@ -174,34 +184,74 @@ public class TaskSheetForm extends ActionForm {
     	holder.setMode("SAVE");
     }
     
+    
+    /** For Paging **/
+    public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
+	public int getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+
+	public int getMaxPage() {
+		float size = getTaskList().size();
+		maxPage = (int) Math.ceil(size/offset);
+		return maxPage;		
+	}
+
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
+	}
+
+	public String getFormId() {
+		return formId;
+	}
+
+	public void setFormId(String formId) {
+		this.formId = formId;
+	}
+
+	    
     public ActionErrors validate(ActionMapping mapping,
     		HttpServletRequest request) {
-    
+    	java.util.Date today = new java.util.Date();
     	ActionErrors errors=new ActionErrors();
     	if(request.getParameter("searchTask")!=null)
 		{
-    		if(getFromDate().length()==0)
+    		if(getFromDate()==null)
     		{
     			errors.add("fromDate",new ActionMessage("errors.required","From Date",false));
     		}
 		
-    		if(getToDate().length()==0)
+    		if(getToDate()==null)
     		{
     			errors.add("toDate",new ActionMessage("errors.required","To Date",false));
     		}
-    		if(getFromDate().length()!=0 && getToDate().length()!=0)
+    		if(getFromDate()!=null && getToDate()!=null)
     		{
-    			if(DateUtils.isFuture(getFromDate()))
-    			{
+    			if(DateUtils.textToDate(getFromDate()).after(today)) {    					
+    					//DateUtils.isFuture(getFromDate()))
+    			
     				errors.add("futureDate",new ActionMessage("future.date","From Date",false));
     			}
-    			if(DateUtils.isFuture(getToDate()))
+    			if(DateUtils.textToDate(getToDate()).after(today))
     			{
+    				//DateUtils.isFuture(getToDate())
     				errors.add("futureDate",new ActionMessage("future.date","To Date",false));
     			}
-    			if(DateUtils.compareDate(getFromDate(), getToDate())>0)
+    			if(DateUtils.textToDate(getFromDate()).after(DateUtils.textToDate(getToDate())))
     			{
-    				errors.add("greaterDate",new ActionMessage("date.greater","From Date","To Date", false));
+    				//DateUtils.compareDate(getFromDate(), getToDate())
+    				errors.add("greaterDate",new ActionMessage("date.greater","To Date","From Date", false));
     			}
     		}
 		}
@@ -230,5 +280,5 @@ public class TaskSheetForm extends ActionForm {
     		}
     	}
     	return errors;
-    }
+    }	
 }

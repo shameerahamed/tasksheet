@@ -1,3 +1,5 @@
+var msg ="Please Enter the Following :\n -----------------------------";
+
 function GenerateReport() {
 	if(validate()) {
 		document.forms[0].action = 'searchTaskProcess.do?reportTask=true';
@@ -12,9 +14,22 @@ function doSearch() {
 	}
 }
 
-function validate() {
+
+function doUserSearch () {
 	var frm = document.forms[0];
-	var msg ="Please Enter the Following :\n -----------------------------";
+	var str = "";
+	if(frm.empId.value == "" && frm.empName.value == "")
+		str += "Please Enter any one of the search Criteria .";
+	if(str != "") {
+		alert(str);
+	} else {
+		document.forms[0].action = 'searchUserProcess.do?searchUser=true';
+		document.forms[0].submit();
+	}	
+}
+
+function validate() {
+	var frm = document.forms[0];	
 	var str = "";
 	if(frm.fromDate.value == " " || frm.fromDate.value == "")
 		str += "\nFrom Date.";		
@@ -25,5 +40,11 @@ function validate() {
 	} else {
 		return true;
 	} 
-	return false
+	return false;
+}
+
+
+function activateUser(idx) {
+	document.forms[0].action = 'searchUserProcess.do?activateUser=true&idx='+idx;
+	document.forms[0].submit();
 }

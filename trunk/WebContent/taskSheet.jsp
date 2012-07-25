@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
+    pageEncoding="ISO-8859-1"%>
  <%@taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
  <%@taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
  <%@taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
@@ -10,10 +10,15 @@
 			showOn: 'button',
 			buttonImage: 'images/calendar.gif',
 			buttonImageOnly: true,
-			dateFormat: 'yy-mm-dd',
+			dateFormat: 'dd-M-y',
 			showButtonPanel: true
 		});
 	});
+
+	$(document).ready(function(){		
+		$('table tr:odd').css('background-color','#DBFBF8');		
+	});
+	
 	function removeHolder(indx) {
 
 		if(window.confirm('Are you sure to delete the row?'))
@@ -52,7 +57,7 @@
 <html:form action="taskSheetProcess">
    <html:hidden property="removeindex" value=""/>
    <html:hidden property="editindex" value=""/>
-   <a href="searchTask.do" style="font-size:12px">Search</a><br><br>
+   <a href="searchTaskDisplay.do" style="font-size:12px">Search</a><br><br>
    Date&nbsp;<span class="mand">*</span>
    <html:text name="taskSheetForm" property="date" styleId="date"/>       	           
       <table border="0" cellpadding="3" cellspacing="1" class="main" width="100%">        	
@@ -180,7 +185,7 @@
                    </logic:notEqual>
                   </logic:equal>
               </logic:iterate>
-      </table>
+      </table><br/><br/>
       <html:submit property="submitForm"></html:submit>
       </html:form>
 <jsp:include page="footer.jsp"></jsp:include>

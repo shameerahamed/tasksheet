@@ -106,7 +106,7 @@ public class TaskSheetDAO {
 	                	ipst.setString(6, holder.getWorkProducts());
 	                	ipst.setFloat(7, holder.getHourSpent());
 	                	ipst.setString(8, holder.getRemarks());
-	                	ipst.setString(9, taskSheetForm.getUserId());
+	                	ipst.setString(9, taskSheetForm.getUserId().toString());
 	                	/*ipst.setString(2, holder.getPhase());
 	                	ipst.setString(3, holder.getModule());
 	                	ipst.setString(4, holder.getActivity());

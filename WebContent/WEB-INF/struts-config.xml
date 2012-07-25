@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+<!-- ==================================== Form Bean Definitions -->
+
+    <form-beans>
+    	<form-bean name="taskSheetForm" type="com.task.TaskSheetForm"/> 
+    	<form-bean name="loginForm" type="com.task.LoginForm"/>
+    </form-beans>	
+
+<!-- ========================================= Global Exception Definitions -->
+
+    <global-exceptions>    
+    	
+    </global-exceptions>
+
+
+    <global-forwards>
+        <!-- Default forward to "Welcome" action -->
+        <!-- Demonstrates using index.jsp to forward -->
+        <forward
+            name="welcome"
+            path="/Welcome.do"/>
+        <forward name="/login" path="/loginDisplay.do"/>
+    </global-forwards>
+
+
+<!-- ============================= Action Mapping Definitions -->
+
+    <action-mappings>
+    	<action path="/loginDisplay" name="loginForm" forward="/login.jsp" scope="session"/>
+    	<action path="/loginProcess"  name="loginForm" type="com.task.LoginProcess" scope="session">
+    		<forward name="success" path="/searchTask.do"/>
+    		<forward name="failure" path="/login.jsp?auth=failed"/>
+    	</action>
+    	<action path="/taskSheetDisplay" name="taskSheetForm" type="com.task.TaskSheetDisplay" scope="session" >
+    		<forward name="display" path="/taskSheet.jsp"/>
+    	</action>
+    	<action path="/taskSheetProcess" name="taskSheetForm" type="com.task.TaskSheetProcess" scope="session" input="/taskSheet.jsp" validate="true">
+    		<forward name="display" path="/taskSheet.jsp"/>
+    	</action>
+    	<action path="/searchTask" name="taskSheetForm" type="com.task.SearchTaskDisplay" scope="session">
+    		<forward name="error" path="/loginDisplay.do"></forward>
+    		<forward name="display" path="/SearchTask.jsp"></forward>
+    	</action>
+    	<action path="/searchTaskProcess" name="taskSheetForm" type="com.task.SearchTaskProcess" scope="session" input="/SearchTask.jsp" validate="true">
+    		<forward name="display" path="/SearchTask.jsp"></forward>
+    		<forward name="report" path="/reportTask.do" redirect="true"></forward>
+    	</action>
+    	<action path="/reportTask" name="taskSheetForm" forward="/report.jsp?reportTask=true"/>
+    </action-mappings>
+
+
+<!-- ============================Controller Configuration 
+-->
+    <controller
+       processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+	<!--  added for spring integration -->
+		
+
+<!-- ======================================== Message Resources Definitions -->
+
+    <message-resources parameter="com.task.mymessages" />
+
+
+<!-- =============================================== Plug Ins Configuration -->
+
+  <!-- ======================================================= Tiles plugin -->
+  <!--
+     This plugin initialize Tiles definition factory. This later can takes some
+	 parameters explained here after. The plugin first read parameters from
+	 web.xml, thenoverload them with parameters defined here. All parameters
+	 are optional.
+     The plugin should be declared in each struts-config file.
+       - definitions-config: (optional)
+            Specify configuration file names. There can be several comma
+		    separated file names (default: ?? )
+       - moduleAware: (optional - struts1.1)
+            Specify if the Tiles definition factory is module aware. If true
+            (default), there will be one factory for each Struts module.
+			If false, there will be one common factory for all module. In this
+            later case, it is still needed to declare one plugin per module.
+            The factory will be initialized with parameters found in the first
+            initialized plugin (generally the one associated with the default
+            module).
+			  true : One factory per module. (default)
+			  false : one single shared factory for all modules
+	   - definitions-parser-validate: (optional)
+	        Specify if xml parser should validate the Tiles configuration file.
+			  true : validate. DTD should be specified in file header (default)
+			  false : no validation
+
+	  Paths found in Tiles definitions are relative to the main context.
+  -->
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+      <!-- Path to XML definition file -->
+      <set-property property="definitions-config"
+                       value="/WEB-INF/tiles-defs.xml" />
+      <!-- Set Module-awareness to true -->
+      <set-property property="moduleAware" value="true" />
+   </plug-in>
+
+</struts-config>
+

@@ -1,0 +1,28 @@
+select {
+    border: purple 1px solid;
+    width:auto;
+    font-size:10px;
+}
+
+input{
+    border: purple 1px solid;
+    width:100px;
+}
+
+
+.mand {
+    color:red;
+}
+
+table{
+      background: rgb(255,255,255);
+}
+
+tr {
+  background: rgb(150,150,150);
+  color:white;
+}
+
+body {
+	font-size:11px;
+}

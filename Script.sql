@@ -13,8 +13,8 @@ CREATE TABLE "APP"."TBL_TASK" (
 		"REMARKS" VARCHAR(200),
 		"USER_ID" INTEGER
 	);
-	
-	
+
+
 CREATE table "APP"."TBL_GROUP" (
 		"ID" INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,
 		"Group_NAME" VARCHAR(60) not NULL
@@ -37,12 +37,12 @@ CREATE TABLE TBL_GROUP (
 		Group_NAME VARCHAR(60) NOT NULL
 	);
 
-create table tbl_picklist(
-	id integer not null primary key auto_increment,
-	option_name varchar(150) not null,
-	option_value varchar(150),
-	section varchar(100) not null,
-	group_id integer
+CREATE TABLE TBL_PICKLIST(
+	ID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	OPTION_NAME VARCHAR(150) NOT NULL,
+	OPTION_VALUE VARCHAR(150),
+	SECTION VARCHAR(100) NOT NULL,
+	GROUP_ID INTEGER
 	);
 	
 CREATE TABLE TBL_USER (

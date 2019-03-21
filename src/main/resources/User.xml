@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="User">
+	<typeAlias alias="User" type="com.task.user.holder.UserHolder"/>
+	<typeAlias alias="userForm" type="com.task.user.holder.UserForm" />
+	
+	<resultMap id="userResult" class="User">
+		<result property= "empId" column="emp_id" />
+		<result property = "fullName" column="full_name"/>
+		<result property = "userName" column="user_name" />
+		<result property = "password" column="password" />
+		<result property = "status" column="status"/>
+		<result property="recId" column="id" />
+		<result property="groupId" column="group_id" />		 
+	</resultMap>
+	
+	
+	<select id="userList" resultMap="userResult">
+		select * from tbl_user
+	</select>
+	
+	
+	<select id="getUserBySearch" resultMap="userResult" parameterClass="userForm">
+		select * from tbl_user where emp_id like '%$empId$%' and full_name like '%$empName$%'
+	</select>
+	
+	
+	<insert id="insertUser" parameterClass="User">
+		insert into tbl_user values(user_name,password,full_name,emp_id,group_id) 
+		values (
+			#userName#,
+			#password#,
+			#fullName#,
+			#empId#,
+			#groupId#
+			)
+	</insert>
+	
+	<update id="updateUser" parameterClass="User">
+		update tbl_user set 
+			user_name = #userName# ,
+			password = #password# ,
+			full_name = #fullName# ,
+			emp_id = #empId# ,
+			group_id = #groupId#,
+			status = #status#
+			where id = #recId#
+	</update>
+	
+	<delete id="deleteUser" parameterClass="java.lang.Integer">
+		delete from tbl_user where id = #value#
+	</delete>
+	
+</sqlMap>

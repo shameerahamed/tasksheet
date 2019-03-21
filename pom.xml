@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.task</groupId>
+	<artifactId>tasksheet</artifactId>
+	<name>TaskSheet</name>
+	<packaging>war</packaging>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<properties>
+		<java-version>1.8</java-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<quartz.version>2.8.0</quartz.version>
+	</properties>
+	
+	<dependencies>		
+		</dependency>
+		<dependency>
+			<groupId>struts</groupId>
+			<artifactId>struts</artifactId>
+			<version>1.2.8</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+	        <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<fork>true</fork>
+					<encoding>UTF-8</encoding>
+					<compilerVersion>1.8</compilerVersion>
+					<source>1.8</source>
+					<target>1.8</target>
+					<compilerArgs>
+						<arg>-Xlint:all</arg>
+					</compilerArgs>
+					<verbose>true</verbose>
+					<optimize>true</optimize>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<overwrite>true</overwrite>
+				</configuration>
+			</plugin>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-war-plugin</artifactId>
+		        <version>2.6</version>
+		        <configuration>
+		        	<warName>tasksheet</warName>
+		        </configuration>
+	        </plugin>	        
+		</plugins>
+	</build>
+</project>

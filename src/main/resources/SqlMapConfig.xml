@@ -4,7 +4,7 @@
         "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
 
 <sqlMapConfig>
-    <!--<properties resource="ibatis.properties"/>-->
+    <properties resource="ibatis.properties"/>
 
     <!-- there are plenty of other optional settings, see the ibatis-sql-maps doc -->
     <settings
